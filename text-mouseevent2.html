@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript">
+		function $(id){
+			return document.getElementById(id);
+		}
+		window.onload = function(){
+			$("info").ontouchstart = showInfoTouch;
+			$("info").onmtouchmove = showInfoTouch;
+			$("info").ontouchend = showInfoTouch;
+		};
+		function showInfoTouch(event){
+			event.preventDefault();
+			var s = "*type = " + event.type;
+			if(event.touches.length > 0){
+				for(var i=0; i < event.touches.length; i++){
+					var t = event.touches[i]
+					s += " xy=" + t.pageX + "," + t.pageY;
+				}
+			}
+			$("info").innerHTML = s + "<br/>\n" + $("info").innerHTML;
+		}
+	</script>
+</head>
+<body>
+		<h3>マウスイベントのテスト</h3>
+		<div id="info">****</div>
+</body>
+</html>
